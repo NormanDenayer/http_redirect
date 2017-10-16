@@ -20,5 +20,6 @@ async def alert(email_config:SmtpConfig, campain:dict, email:str):
         message['Subject'] = campain['subject']
 
         await smtp.send_message(message)
+        logger.info(f'email sent to {campain["address"]} on behalf of {email}')
     except:
         logger.exception('not able to send the mail')

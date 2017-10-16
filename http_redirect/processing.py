@@ -14,7 +14,7 @@ async def alert(email_config:SmtpConfig, campain:dict, email:str):
         await smtp.connect()
         if email_config.username:
             await smtp.login(username=email_config.username, password=email_config.password)
-        message = MIMEText(f'{email} wants to be recontacted')
+        message = MIMEText(campain['body'].format(email=email))
         message['From'] = campain['from_address']
         message['To'] = campain['address']
         message['Subject'] = campain['subject']
